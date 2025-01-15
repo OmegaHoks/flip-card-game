@@ -53,7 +53,6 @@ function revealCards() {
     determineWinner();
 }
 
-
 function determineWinner() {
     const results = players.map(player => player.hiddenCard + player.exposedCard);
     const maxScore = Math.max(...results);
