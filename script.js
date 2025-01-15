@@ -31,7 +31,7 @@ function updateUI() {
         playerDiv.innerHTML = `
             <h3>${player.name}</h3>
             <div class="cards">
-                <div class="card hidden">?</div>
+                <div class="card hidden" data-player="${player.name}">?</div>
                 <div class="card">${player.exposedCard}</div>
             </div>
         `;
@@ -41,9 +41,9 @@ function updateUI() {
 }
 
 function revealCards() {
-    players.forEach((player, index) => {
-        const hiddenCard = document.querySelectorAll('.hidden')[index];
-        hiddenCard.textContent = player.hiddenCard;
+    const hiddenCards = document.querySelectorAll('.card.hidden');
+    hiddenCards.forEach((hiddenCard, index) => {
+        hiddenCard.textContent = players[index].hiddenCard;
         hiddenCard.classList.remove('hidden');
     });
     determineWinner();
