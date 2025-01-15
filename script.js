@@ -42,12 +42,17 @@ function updateUI() {
 
 function revealCards() {
     const hiddenCards = document.querySelectorAll('.card.hidden');
-    hiddenCards.forEach((hiddenCard, index) => {
-        hiddenCard.textContent = players[index].hiddenCard;
-        hiddenCard.classList.remove('hidden');
+    hiddenCards.forEach(hiddenCard => {
+        const playerName = hiddenCard.getAttribute('data-player');
+        const player = players.find(p => p.name === playerName);
+        if (player) {
+            hiddenCard.textContent = player.hiddenCard;
+            hiddenCard.classList.remove('hidden');
+        }
     });
     determineWinner();
 }
+
 
 function determineWinner() {
     const results = players.map(player => player.hiddenCard + player.exposedCard);
